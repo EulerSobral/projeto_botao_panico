@@ -1,4 +1,5 @@
 import React from "react"; 
+import './Buttons.css'; // Assuming you have a CSS file for styling
 
 function Buttons(){ 
     return( 

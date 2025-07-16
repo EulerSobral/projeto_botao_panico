@@ -1,13 +1,13 @@
 import React from "react"; 
+import './Header.css'; // Assuming you have a CSS file for styling
 
-
-function Header(){ 
+function Header(props){ 
     return( 
         <>
         <header> 
-            <h1 className="title">Botão de pânico</h1>
-            <p className="text-title-1">Pressione qualquer botão para pedir ajudar</p> 
-            <p className="text-title-2">Escolha o serviço de emergência apropriado para a sua situação!</p> 
+            <h1 className="title">{props.title}</h1>
+            <p className="text-title-1">{props.textTitle1}</p> 
+            <p className="text-title-2">{props.textTitle2}</p> 
         </header> 
         </>
     )
