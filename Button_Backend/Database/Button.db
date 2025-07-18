@@ -1,0 +1,3 @@
+create database button;
+
+create table User(id int autoincrement primarykey
