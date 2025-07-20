@@ -1,3 +1,27 @@
-create database button;
+CREATE DATABASE button;
 
-create table User(id int autoincrement primarykey
+CREATE TABLE User (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    registration TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    admin BOOL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE ButtonDevice(
+    id_button_device INTEGER PRIMARY KEY,
+    room INTEGER NOT NULL
+);
+
+CREATE TABLE ButtonApp(
+    id_button_app INTEGER PRIMARY KEY,
+    type_button TEXT
+);
+
+CREATE TABLE AlertMessage(
+    id_message INTEGER PRIMARY KEY,
+    location TEXT,
+    message TEXT
+)
