@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Header from "./Header"; 
+import Header from "./Header";
 import Buttons from "./Buttons";  
 
 
@@ -7,12 +7,12 @@ export default function TelaDesktop() {
   const title = "Botão de pânico"; 
   const textTitle1 = "Pressione qualquer botão para pedir ajuda";
   const textTitle2 = "Escolha o serviço de emergência apropriado para a sua situação"
-  
-  useEffect(() => { 
+
+  useEffect(() => {
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          fetch("https://minha-api", { 
+          fetch("https://minha-api", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
