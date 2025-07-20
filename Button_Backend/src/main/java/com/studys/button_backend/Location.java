@@ -2,7 +2,7 @@ package com.studys.button_backend;
 
 
 public class Location{
-    private i double latidude;
+    private double latidude;
     private double longitude;
     private String locationName;
 

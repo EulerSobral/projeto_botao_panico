@@ -17,7 +17,8 @@ CREATE TABLE ButtonDevice(
 
 CREATE TABLE ButtonApp(
     id_button_app INTEGER PRIMARY KEY,
-    type_button TEXT
+    type_button TEXT,
+    button_activate BOOL
 );
 
 CREATE TABLE AlertMessage(
