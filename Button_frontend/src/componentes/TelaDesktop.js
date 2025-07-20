@@ -26,7 +26,7 @@ export default function TelaDesktop() {
               throw new Error("Erro ao enviar localização");
             }
             return response.json();
-          }).then(data => {
+          }).then(data => { 
             console.log("Localização enviada com sucesso:", data);
           }).catch(error => {
             console.error("Erro ao enviar localização:", error);
