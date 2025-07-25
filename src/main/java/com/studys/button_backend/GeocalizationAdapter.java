@@ -27,7 +27,7 @@ public class GeocalizationAdapter implements  LocationAdapter{
     public String getApiKey() {return apiKey;}
 
     @Override
-    public Location findLocalion(double latidude, double longitude){
+    public String findLocalion(double latidude, double longitude){
         String url = String.format(
                 "https://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&key=%s",
                 latidude, longitude, apiKey
@@ -49,15 +49,15 @@ public class GeocalizationAdapter implements  LocationAdapter{
             if(response.statusCode() == 200){
                 JsonObject json = JsonParser.parseString(responseJsonString).getAsJsonObject();
                 String nameLocation = extractName(json);
-                return new Location(latidude, longitude, nameLocation);
+                Location adressName = new Location(latidude, longitude, nameLocation);
+                return adressName.getLocationName();
             }else{
                 System.out.println("Erro na chamada da api: " +  response.statusCode());
             }
         } catch (Exception e){
             System.err.println(e);
         }
-
-        return new Location(0, 0, "Local não existe");
+        return "";
     }
 
     public String extractName(JsonObject json){
@@ -67,4 +67,5 @@ public class GeocalizationAdapter implements  LocationAdapter{
         }
         return "Localidade Desconhecida";
     }
+
 }
