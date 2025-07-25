@@ -37,7 +37,10 @@ public class ButtonApp implements Subject, Observer {
 
     @Override
     public void update(Boolean sendMessage) {
-        GeocalizationAdapter local = new GeocalizationAdapter("chave");
+        GeocalizationAdapter localAdapter = new GeocalizationAdapter("chave");
+        double latidude = 0;
+        double longitude = 0;
+        String local = localAdapter.findLocalion(latidude, longitude);
         new Alert(idButton, local, typeButton);
     }
 

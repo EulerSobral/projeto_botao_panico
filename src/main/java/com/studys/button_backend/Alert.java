@@ -9,11 +9,11 @@ public class Alert {
     // type varchar(25),
     // data datetime
     private int id;
-    private GeocalizationAdapter local;
+    private String local;
     private String typeAlert;
 
 
-    public Alert(int id,  GeocalizationAdapter local, String typeAlert) {
+    public Alert(int id,  String local, String typeAlert) {
         this.id = id;
         this.local = local;
         this.typeAlert = typeAlert;
@@ -24,7 +24,7 @@ public class Alert {
         this.id = id;
     }
 
-    public void setLocal(GeocalizationAdapter local) {
+    public void setLocal(String local) {
         this.local = local;
     }
 
@@ -33,7 +33,7 @@ public class Alert {
     }
 
     public int getId() {return id;}
-    public GeocalizationAdapter getLocal() {return local;}
+    public String getLocal() {return local;}
     public String getTypeAlert() {return typeAlert;}
 }
 
