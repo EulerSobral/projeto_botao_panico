@@ -1,5 +1,5 @@
 package com.studys.button_backend;
 
-interface Observer(){
+interface Observer {
     void update(Boolean sendMessage);
 }
