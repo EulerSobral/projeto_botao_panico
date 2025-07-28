@@ -26,13 +26,7 @@ public class GeocalizationAdapter implements  LocationAdapterInterface{
     public void setApiKey(String apiKey) {this.apiKey = apiKey;}
 
     public String getApiKey() {return apiKey;}
-
-    public ResponseEntity<String> receiveLocation(@RequestBody LocationAdapter locationAdapter){
-        String locationName = findLocation(locationAdapter.getLatitude(), locationAdapter.getLongitude());
-        Location location = new Location(locationAdapter.getLatitude(), locationAdapter.getLongitude(), locationName);
-        return ResponseEntity.ok(location.toString());
-    }
-
+    
     @Override
     public String findLocation(double latidude, double longitude) {
         String url = String.format(

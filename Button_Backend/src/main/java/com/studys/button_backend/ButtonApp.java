@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMappin('/app')
 public class ButtonApp implements Subject, Observer {
     private List<Observer> buttonObservers = new ArrayList<Observer>();
     private int idButton;
@@ -16,7 +14,8 @@ public class ButtonApp implements Subject, Observer {
     private boolean activateButton;
 
 
-    public ButtonApp(int idButton,  String typeButton, boolean activateButton) {
+    public ButtonApp(List<Observer> buttonObservers, int idButton,  String typeButton, boolean activateButton) {
+        this.buttonObservers = buttonObservers;
         this.idButton = idButton;
         this.typeButton = typeButton;
         this.activateButton = activateButton;
@@ -41,14 +40,15 @@ public class ButtonApp implements Subject, Observer {
         }
     }
 
-
     @Override
-    public void update(Boolean sendMessage) {
-        GeocalizationAdapter localAdapter = new GeocalizationAdapter("chave");
-        double latidude = 0;
-        double longitude = 0;
-        String local = localAdapter.findLocalion(latidude, longitude);
-        new Alert(idButton, local, typeButton);
+    public ResponseEntity<String> update(Boolean sendMessage,
+                                         @RequestBody LocationAdapter locationAdapter) {
+        GeocalizationAdapter geocalizationAdapter = new GeocalizationAdapter("chave");
+        double latidude = locationAdapter.getLatitude();
+        double longitude = locationAdapter.getLongitude();
+        String locationName = geocalizationAdapter.findLocation(latidude, longitude);
+        Alert alert = new Alert(idButton, locationName, typeButton);
+        return ResponseEntity.ok(alert.toString());
     }
 
     public void setIdButton(int idButton) {this.idButton = idButton;}
