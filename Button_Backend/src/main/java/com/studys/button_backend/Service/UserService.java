@@ -16,7 +16,7 @@ public class UserService {
     public void loginUser(String registration, String password){}
 
     public Boolean registerUser(String email, String registration, String phone, String password){
-
+        return null;
     }
 
     public void deleteUser(String registration){
