@@ -1,19 +1,21 @@
 create table User(
-    id INTEGER auto_increment,
-    email varchar not null,
-    registration char(8) primary key,
-    phone char(13),
-    id_Campus INTEGER null
+    id INTEGER auto_increment unique,
+    email varchar(100) not null,
+    registration varchar(8) primary key,
+    phone varchar(13),
+    id_Campus INTEGER null,
+    type varchar(10) default 'User' not null CHECK (type IN ('User', 'Admin')),
+    password text not null
 );
 
 create table Button(
-    id INTEGER auto_increment,
+    id INTEGER auto_increment primary key ,
     class varchar(100),
     id_campus INTEGER,
 );
 
 create table Alert(
-    id INTEGER auto_increment,
+    id INTEGER auto_increment primary key ,
     id_button INTEGER null,
     local varchar(250) null,
     type varchar(25),
@@ -22,8 +24,8 @@ create table Alert(
 );
 
 create table Campus(
-    id INTEGER auto_increment,
-    nome varchar(250)
+    id INTEGER auto_increment primary key ,
+    name varchar(250)
 );
 
 //create table AdmCampus(

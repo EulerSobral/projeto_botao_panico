@@ -4,7 +4,7 @@ package com.studys.button_backend.Service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CampusDB {
+public class CampusService {
 
     public void registerCampus(int id, String name){
 

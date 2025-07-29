@@ -3,7 +3,7 @@ package com.studys.button_backend.Service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ButtonDB {
+public class ButtonService {
 
   public void registerButton(int id, String classButton, int id_campus){
 
