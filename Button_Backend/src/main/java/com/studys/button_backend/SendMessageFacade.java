@@ -7,15 +7,15 @@ import com.studys.button_backend.Service.UserService;
 
 
 public class SendMessageFacade {
-    private EmailService emailService;
+    private static EmailService emailService;
 
     public SendMessageFacade(EmailService emailService) {
-        this.emailService = emailService;
+        SendMessageFacade.emailService = emailService;
     }
 
-    public void sendMessages(RegisterBody user){
+    public static void sendMessages(String email) {
         String subject = "E-mail enviado com sucesso";
         String message = "Hello World";
-        emailService.sendEmailText(user.getEmail(), subject, message );
+        emailService.sendEmailText(email, subject, message );
     }
 }
