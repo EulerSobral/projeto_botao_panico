@@ -41,14 +41,11 @@ public class ButtonApp implements Subject, Observer {
     }
 
     @Override
-    public ResponseEntity<String> update(Boolean sendMessage,
-                                         @RequestBody LocationAdapter locationAdapter) {
-        GeocalizationAdapter geocalizationAdapter = new GeocalizationAdapter("chave");
-        double latidude = locationAdapter.getLatitude();
-        double longitude = locationAdapter.getLongitude();
-        String locationName = geocalizationAdapter.findLocation(latidude, longitude);
-        Alert alert = new Alert(idButton, locationName, typeButton);
-        return ResponseEntity.ok(alert.toString());
+    public Boolean update(Boolean sendMessage) {
+        if(sendMessage) {
+            return true;
+        }
+        return false;
     }
 
     public void setIdButton(int idButton) {this.idButton = idButton;}
