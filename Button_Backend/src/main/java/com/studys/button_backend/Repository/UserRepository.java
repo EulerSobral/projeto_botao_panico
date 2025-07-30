@@ -4,21 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Repository
 public class UserRepository {
-    @Autowired
-    JdbcTemplate jdbcTemplate;
 
-    public String Login(String registration, String password) throws Exception {
+    private final JdbcTemplate jdbcTemplate;
+
+    public UserRepository(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public Map<String, String> login(int registration) throws Exception {
         String sql = "select password, type from users where registration = ?";
 
         try{
             Map<String, Object> userLogin = jdbcTemplate.queryForMap(sql, new Object[]{registration});
 
-            if(userLogin.get("password").toString().equals(password)) return userLogin.get("type").toString();
-            return "Error";
+            Map<String, String> result = new HashMap<>();
+
+            result.put("type", userLogin.get("type").toString());
+            result.put("password", userLogin.get("password").toString());
+
+            return result;
         }
         catch(Exception e){throw new Exception("Login Error");}
     }
@@ -33,7 +42,7 @@ public class UserRepository {
         catch(Exception e){return false;}
     }
 
-    public Boolean delete(String registration){
+    public Boolean delete(int registration){
         String sql = "delete from users where registration = ?";
 
         try{

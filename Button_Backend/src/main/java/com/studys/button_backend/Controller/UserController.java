@@ -33,11 +33,14 @@ public class UserController {
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteUser(@RequestBody Map<String,String> user){
+    public ResponseEntity<?> deleteUser(@RequestHeader("Authorization") String token){
         try{
-            String registration = user.get("registration");
+            if(token == null) return ResponseEntity.status(400).body("Token invalid");
 
-            Boolean result = userService.deleteUser(registration);
+            String tokenAdjusted;
+            tokenAdjusted = token.substring(7);
+
+            Boolean result = userService.deleteUser(tokenAdjusted);
 
             if(result) return ResponseEntity.status(200).body("User deleted successfully");
             else return ResponseEntity.status(400).body("User deletion failed");

@@ -1,12 +1,14 @@
 package com.studys.button_backend.Service;
+import com.studys.button_backend.Interface.AlertInterface;
 import com.studys.button_backend.Repository.AlertRepository;
 import com.studys.button_backend.Repository.CampusRepository;
+import com.studys.button_backend.Util.JwtUtil;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
 @Service
-public class AlertService {
+public class AlertService implements AlertInterface {
 
     private final AlertRepository alertRepository;
 
@@ -19,7 +21,8 @@ public class AlertService {
     }
 
 
-    public Boolean sendAlert(String local, String type, LocalDate data, int id_user){
+    public Boolean sendAlert(String local, String type, LocalDate data, String token){
+        int id_user = Integer.parseInt(JwtUtil.decodeToken(token).getSubject());
         return alertRepository.createAlert(id_user, local, type, data);
     }
 }

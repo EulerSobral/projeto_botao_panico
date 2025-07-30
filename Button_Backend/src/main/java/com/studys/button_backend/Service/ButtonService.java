@@ -1,10 +1,11 @@
 package com.studys.button_backend.Service;
 
+import com.studys.button_backend.Interface.ButtonInterface;
 import com.studys.button_backend.Repository.ButtonRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ButtonService {
+public class ButtonService /*implements ButtonInterface */{
 
   private final ButtonRepository buttonRepository;
 

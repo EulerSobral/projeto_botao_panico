@@ -1,11 +1,12 @@
 package com.studys.button_backend.Service;
 
 
+import com.studys.button_backend.Interface.CampusInterface;
 import com.studys.button_backend.Repository.CampusRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CampusService {
+public class CampusService /*implements CampusInterface*/ {
 
     private final CampusRepository campusRepository;
 

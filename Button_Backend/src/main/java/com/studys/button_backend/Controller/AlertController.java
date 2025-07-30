@@ -2,10 +2,7 @@ package com.studys.button_backend.Controller;
 
 import com.studys.button_backend.Service.AlertService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -21,10 +18,9 @@ public class AlertController {
     }
 
     @PostMapping
-    public ResponseEntity<?> sendAlert(@RequestBody Map<String, String> alert){
+    public ResponseEntity<?> sendAlert(@RequestBody Map<String, String> alert, @RequestHeader("Authorization") String token){
         try{
             String local = alert.get("local");
-            String id_user = alert.get("id_user");
             String id_button = alert.get("id_button");
             String type = alert.get("type");
             String date = alert.get("date");
@@ -33,9 +29,10 @@ public class AlertController {
 
             Boolean result = false;
 
-            if(id_user != null){
-                int idUser = Integer.parseInt(id_user);
-                result = alertService.sendAlert(local, type, localDate, idUser);
+            if(local != null && token != null){
+                String tokenAdjusted;
+                tokenAdjusted = token.substring(7);
+                result = alertService.sendAlert(local, type, localDate, tokenAdjusted);
             }
             else if(id_button != null){
                 int idButton = Integer.parseInt(id_button);
