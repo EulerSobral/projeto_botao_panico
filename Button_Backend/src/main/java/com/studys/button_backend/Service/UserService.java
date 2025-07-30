@@ -29,9 +29,8 @@ public class UserService implements UserInterface {
         return userRepository.Register(registration, password, email, phone);
     }
 
-    public Boolean deleteUser(String token){
-        Claims claims = JwtUtil.decodeToken(token);
-        int id = Integer.parseInt(claims.getSubject());
+    public Boolean deleteUser(String registration){
+        int id = Integer.parseInt(registration);
 
         return userRepository.delete(id);
     }

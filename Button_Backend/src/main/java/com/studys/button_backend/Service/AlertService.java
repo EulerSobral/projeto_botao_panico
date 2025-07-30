@@ -25,6 +25,7 @@ public class AlertService implements AlertInterface {
 
 
     public Boolean sendAlert(String local, String type, LocalDate data, String token){
+        System.out.println("Chegou no service");
         List<RegisterBody> users = List.of();
         for (RegisterBody user : users) {
             if (user.getEmail() != null && !user.getEmail().isEmpty()) {

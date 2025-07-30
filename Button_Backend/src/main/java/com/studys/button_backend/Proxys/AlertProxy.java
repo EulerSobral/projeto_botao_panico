@@ -13,29 +13,31 @@ import java.time.LocalDate;
 @Service
 public class AlertProxy implements AlertInterface {
 
-    private AlertService alertService;
+    private final AlertService alertService;
 
     public AlertProxy(AlertService alertService){
         this.alertService = alertService;
     }
 
+    @Override
     public Boolean sendAlert(int id_button, String type, LocalDate data){
 
         return alertService.sendAlert(id_button, type, data);
     }
 
-
+    @Override
     public Boolean sendAlert(String local, String type, LocalDate data, String token){
-        String tokenAdjusted;
-        tokenAdjusted = token.substring(7);
-        checkToken(tokenAdjusted);
-        return alertService.sendAlert(local, type, data, tokenAdjusted);
+        System.out.println("Chegou no proxy");
+        checkToken(token);
+        System.out.println(token);
+        return alertService.sendAlert(local, type, data, token);
     }
 
     private void checkToken(String token) {
         try {
             JwtUtil.decodeToken(token);
         } catch (Exception e) {
+            System.out.println("Token invalido");
             throw new RuntimeException("Token inválido ou expirado");
         }
     }

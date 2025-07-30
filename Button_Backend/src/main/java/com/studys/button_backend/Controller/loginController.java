@@ -1,5 +1,6 @@
 package com.studys.button_backend.Controller;
 
+import com.studys.button_backend.Interface.UserInterface;
 import com.studys.button_backend.Service.UserService;
 import com.studys.button_backend.Util.JwtUtil;
 import org.springframework.http.HttpStatus;
@@ -10,11 +11,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("/login")
+
 @RestController
+@RequestMapping("/login")
 public class loginController {
 
-    private final UserService userService;
+    private final UserInterface userService;
 
     public loginController(UserService userService){
         this.userService = userService;

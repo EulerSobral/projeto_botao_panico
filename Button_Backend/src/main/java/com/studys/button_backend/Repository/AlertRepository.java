@@ -15,7 +15,7 @@ public class AlertRepository {
     }
 
     public Boolean createAlert(int id_button, String type, LocalDate data){
-        String sql = "insert into alerts(id_button, type, data) values(?,?,?)";
+        String sql = "insert into alerts(id_button, type, date) values(?,?,?)";
 
         try{
             jdbcTemplate.update(sql, id_button, type, data);
@@ -25,12 +25,13 @@ public class AlertRepository {
     }
 
     public Boolean createAlert(int id_user, String local, String type, LocalDate data){
-        String sql = "insert into alerts(id_user, local, type, data) values(?,?,?,?)";
+        String sql = "insert into alerts(id_user, local, type, date) values(?,?,?,?)";
 
+        System.out.println("chegou no repository");
         try{
             jdbcTemplate.update(sql, id_user, local, type, data);
             return true;
         }
-        catch(Exception e){return false;}
+        catch(Exception e){System.out.println(e.getMessage());return false;}
     }
 }
