@@ -5,6 +5,8 @@ import com.studys.button_backend.DTO.RegisterBody;
 import com.studys.button_backend.Service.EmailService;
 import com.studys.button_backend.Service.UserService;
 
+import java.util.List;
+
 
 public class SendMessageFacade {
     private EmailService emailService;
@@ -13,9 +15,10 @@ public class SendMessageFacade {
         this.emailService = emailService;
     }
 
-    public void sendMessages(RegisterBody user){
+    public static void sendMessages(String email) {
         String subject = "E-mail enviado com sucesso";
-        String message = "Hello World";
-        emailService.sendEmailText(user.getEmail(), subject, message );
+        String message = "Hello Worldl";
+        emailService.sendEmailText(email, subject, message);
+
     }
 }
