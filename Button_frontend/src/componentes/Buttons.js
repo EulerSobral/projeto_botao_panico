@@ -1,16 +1,56 @@
 import React from "react"; 
 import './Buttons.css'; // Assuming you have a CSS file for styling
 
-function Buttons(){       
-    const handleClick = (local, id, date, token) => {
-        console.log(`Local: ${local}, ID: ${id}, Date: ${date}, Token: ${token}`);
+function Buttons(){        
+      
+    const url = 'https://localhost:8080/Button';
 
-        fetch('https://your-backend-url.com/api/alert', {
+    const date = new Date();
+
+    const [userId, setUserId] = useState(null);
+    const [userName, setUserName] = useState(''); 
+
+    useEffect(() => {
+        const getUserId = () => {
+            const token = localStorage.getItem('jwt_token'); 
+
+            if (token) {
+                try {
+                    const decodedToken = jwtDecode(token);
+                    const id = decodedToken.userId || decodedToken.sub || decodedToken.id;
+                    const name = decodedToken.name || decodedToken.username;
+
+                    if (id) {
+                        setUserId(id);
+                        if (name) {
+                            setUserName(name); 
+                        }
+                    } else {
+                        console.warn("ID do usuário não encontrado no token.");
+                    }
+                } catch (error) {
+                    console.error("Erro ao decodificar o token JWT:", error);
+                    localStorage.removeItem('jwt_token');
+                }
+            } else {
+                console.log("Nenhum token JWT encontrado no localStorage.");
+            }
+        };
+
+        getUserId();
+    }, []) 
+
+    //String local, String type, LocalDate data, int id_user
+
+    const handleClick = (local, type, date, id_user) => {
+        console.log(`local: ${local}, Type: ${type}, Date: ${date}, User ID: ${id_user}`);
+
+        fetch(url, {
              method: 'POST',
              headers: {
                  'Content-Type': 'application/json',
              },
-             body: JSON.stringify({ local, id, date, token }),
+             body: JSON.stringify({local, type, date, id_user}) // Use userId from state,
          })
          .then(response => response.json())
          .then(data => console.log(data))
@@ -20,15 +60,15 @@ function Buttons(){
     return( 
         <> 
             <div className="card-buttons"> 
-                <div className="btn-1" onClick={() => handleClick('IFPB - CG', 0, '2025-01-01T00:00:00Z', 'token')}> 
+                <div className="btn-1" onClick={() => handleClick('IFPB - CG', 'Alerta', date, userId)}> 
                     <p className="text-btn-1">Alerta</p> 
                     <p className="text-btn-2">Notique outros setores</p> 
                 </div> 
-                <div className="btn-2" onClick={() => handleClick('IFPB - CG', 0, '2025-01-01T00:00:00Z', 'token')}> 
+                <div className="btn-2" onClick={() => handleClick('IFPB - CG', 'Polícia', date, userId)}> 
                     <p className="text-btn-1">Policia</p> 
                     <p className="text-btn-2">Notique a polícia</p> 
                 </div> 
-                <div className="btn-3" onClick={() => handleClick('IFPB - CG', 0, '2025-01-01T00:00:00Z', 'token')}> 
+                <div className="btn-3" onClick={() => handleClick('IFPB - CG', 'Polícia', date, userId)}> 
                     <p className="text-btn-1">Bombeiros</p> 
                     <p className="text-btn-2">Notique os bombeiros</p> 
                 </div>

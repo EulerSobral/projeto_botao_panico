@@ -8,8 +8,6 @@ export default function TelaDesktop() {
   const textTitle1 = "Pressione qualquer botão para pedir ajuda";
   const textTitle2 = "Escolha o serviço de emergência apropriado para a sua situação" 
 
-  const url = 'https://localhost:8080/Button';
-
   return (
     <> 
       <Header title={title} textTitle1={textTitle1} textTitle2={textTitle2}/>
