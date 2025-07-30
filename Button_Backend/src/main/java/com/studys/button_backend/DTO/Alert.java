@@ -1,6 +1,4 @@
-package com.studys.button_backend;
-
-import javax.xml.crypto.Data;
+package com.studys.button_backend.DTO;
 
 public class Alert {
     // id INTEGER auto_increment,
@@ -8,20 +6,20 @@ public class Alert {
     // local varchar(250) null,
     // type varchar(25),
     // data datetime
-    private int id;
+    private int id_user;
     private String local;
     private String typeAlert;
 
 
     public Alert(int id,  String local, String typeAlert) {
-        this.id = id;
+        this.id_user = id;
         this.local = local;
         this.typeAlert = typeAlert;
 
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_user = id;
     }
 
     public void setLocal(String local) {
@@ -32,7 +30,7 @@ public class Alert {
         this.typeAlert = typeAlert;
     }
 
-    public int getId() {return id;}
+    public int getId() {return id_user;}
     public String getLocal() {return local;}
     public String getTypeAlert() {return typeAlert;}
 }

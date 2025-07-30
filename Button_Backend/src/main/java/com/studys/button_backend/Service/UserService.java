@@ -16,11 +16,11 @@ public class UserService {
     public void loginUser(String registration, String password){}
 
     public Boolean registerUser(String email, String registration, String phone, String password){
-        return null;
+        return userRepository.Register(registration, password, email, phone);
     }
 
-    public void deleteUser(String registration){
-
+    public Boolean deleteUser(String registration){
+        return userRepository.delete(registration);
     }
 
 

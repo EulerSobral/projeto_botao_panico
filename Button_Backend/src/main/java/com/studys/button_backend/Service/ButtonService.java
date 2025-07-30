@@ -8,21 +8,20 @@ public class ButtonService {
 
   private final ButtonRepository buttonRepository;
 
-  public ButtonService(ButtonRepository buttonRepository){this.buttonRepository = buttonRepository;}
-
-  public void registerButton(int id, String classButton, int id_campus){
-
+  public ButtonService(ButtonRepository buttonRepository){
+    this.buttonRepository = buttonRepository;
   }
 
-  public void activateButton(int id, String classButton, int id_campus){
-
+  public Boolean registerButton(String classButton, int id_campus){
+    return buttonRepository.register(classButton, id_campus);
   }
 
-  public void deleteButton(int id, String classButton, int id_campus){
+//  public Boolean activateButton(String classButton, int id_campus){
+//    return buttonRepository.
+//  }
 
+  public Boolean deleteButton(int id_campus){
+    return buttonRepository.delete(id_campus);
   }
-
-
-
 
 }
