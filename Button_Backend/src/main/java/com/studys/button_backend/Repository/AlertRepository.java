@@ -14,8 +14,8 @@ public class AlertRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Boolean createButtonAlert(String id_button, String type, LocalDate data){
-        String sql = "insert into Alert(id_button, type, data) values(?,?,?)";
+    public Boolean createAlert(int id_button, String type, LocalDate data){
+        String sql = "insert into alerts(id_button, type, data) values(?,?,?)";
 
         try{
             jdbcTemplate.update(sql, id_button, type, data);
@@ -24,8 +24,8 @@ public class AlertRepository {
         catch(Exception e){return false;}
     }
 
-    public Boolean createPersonalAlert(String id_user, String local, String type, LocalDate data){
-        String sql = "insert into Alert(id_user, local, type, data) values(?,?,?,?)";
+    public Boolean createAlert(int id_user, String local, String type, LocalDate data){
+        String sql = "insert into alerts(id_user, local, type, data) values(?,?,?,?)";
 
         try{
             jdbcTemplate.update(sql, id_user, local, type, data);

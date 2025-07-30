@@ -12,7 +12,7 @@ public class UserRepository {
     JdbcTemplate jdbcTemplate;
 
     public String Login(String registration, String password) throws Exception {
-        String sql = "select password, type from User where registration = ?";
+        String sql = "select password, type from users where registration = ?";
 
         try{
             Map<String, Object> userLogin = jdbcTemplate.queryForMap(sql, new Object[]{registration});
@@ -24,7 +24,7 @@ public class UserRepository {
     }
 
     public Boolean Register(String registration, String password, String email, String phone){
-        String sql = "insert into User(registration, password, email, phone) values(?,?,?,?)";
+        String sql = "insert into users(registration, password, email, phone) values(?,?,?,?)";
 
         try{
             jdbcTemplate.update(sql, new Object[]{registration, password, email, phone});
@@ -34,7 +34,7 @@ public class UserRepository {
     }
 
     public Boolean delete(String registration){
-        String sql = "delete from User where registration = ?";
+        String sql = "delete from users where registration = ?";
 
         try{
             jdbcTemplate.update(sql, new Object[]{registration});

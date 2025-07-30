@@ -12,7 +12,7 @@ public class ButtonRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
     public Boolean register(String className, int id_campus){
-        String sql = "insert into Button(class, id_campus) values(?, ?)";
+        String sql = "insert into buttons(class, id_campus) values(?, ?)";
 
         try{
             jdbcTemplate.update(sql, className, id_campus);
@@ -22,7 +22,7 @@ public class ButtonRepository {
     }
 
     public Boolean delete(int id){
-        String sql = "delete from Button where id = ?";
+        String sql = "delete from buttons where id = ?";
 
         try{
             jdbcTemplate.update(sql, id);

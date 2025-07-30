@@ -10,7 +10,16 @@ public class AlertService {
 
     private final AlertRepository alertRepository;
 
-    public AlertService(AlertRepository alertRepository){this.alertRepository = alertRepository;}
+    public AlertService(AlertRepository alertRepository){
+        this.alertRepository = alertRepository;
+    }
 
-    public void sendAlert(int id, int id_button, String local, String type, LocalDate data){}
+    public Boolean sendAlert(int id_button, String type, LocalDate data){
+        return alertRepository.createAlert(id_button, type, data);
+    }
+
+
+    public Boolean sendAlert(String local, String type, LocalDate data, int id_user){
+        return alertRepository.createAlert(id_user, local, type, data);
+    }
 }

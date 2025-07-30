@@ -2,10 +2,7 @@ package com.studys.button_backend.Controller;
 
 import com.studys.button_backend.Service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -13,13 +10,13 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService){
         this.userService = userService;
     }
 
-    @GetMapping
+    @PostMapping
     public ResponseEntity<?> createUser(@RequestBody Map<String,String> user){
         try{
             String email = user.get("email");
@@ -33,5 +30,18 @@ public class UserController {
             else return ResponseEntity.status(400).body("User registration failed");
         }
         catch(Exception e){return ResponseEntity.status(400).body("User registration failed");}
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteUser(@RequestBody Map<String,String> user){
+        try{
+            String registration = user.get("registration");
+
+            Boolean result = userService.deleteUser(registration);
+
+            if(result) return ResponseEntity.status(200).body("User deleted successfully");
+            else return ResponseEntity.status(400).body("User deletion failed");
+        }
+        catch(Exception e){return ResponseEntity.status(400).body("User deletion failed");}
     }
 }

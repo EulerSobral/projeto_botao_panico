@@ -9,14 +9,16 @@ public class CampusService {
 
     private final CampusRepository campusRepository;
 
-    public CampusService(CampusRepository campusRepository){this.campusRepository = campusRepository;}
-
-    public void registerCampus(int id, String name){
-
+    public CampusService(CampusRepository campusRepository){
+        this.campusRepository = campusRepository;
     }
 
-    public void deleteCampus(int id, String name){
+    public Boolean registerCampus(String name){
+        return campusRepository.register(name);
+    }
 
+    public Boolean deleteCampus(int id_campus){
+        return campusRepository.deleteCampus(id_campus);
     }
 
 
