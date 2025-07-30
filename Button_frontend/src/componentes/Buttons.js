@@ -1,4 +1,5 @@
-import React from "react"; 
+import { jwtDecode } from 'jwt-decode'
+import React, {useState, useEffect} from "react"; 
 import './Buttons.css'; // Assuming you have a CSS file for styling
 
 function Buttons(){        
@@ -8,7 +9,6 @@ function Buttons(){
     const date = new Date();
 
     const [userId, setUserId] = useState(null);
-    const [userName, setUserName] = useState(''); 
 
     useEffect(() => {
         const getUserId = () => {
@@ -18,13 +18,9 @@ function Buttons(){
                 try {
                     const decodedToken = jwtDecode(token);
                     const id = decodedToken.userId || decodedToken.sub || decodedToken.id;
-                    const name = decodedToken.name || decodedToken.username;
 
                     if (id) {
                         setUserId(id);
-                        if (name) {
-                            setUserName(name); 
-                        }
                     } else {
                         console.warn("ID do usuário não encontrado no token.");
                     }
@@ -40,7 +36,6 @@ function Buttons(){
         getUserId();
     }, []) 
 
-    //String local, String type, LocalDate data, int id_user
 
     const handleClick = (local, type, date, id_user) => {
         console.log(`local: ${local}, Type: ${type}, Date: ${date}, User ID: ${id_user}`);
