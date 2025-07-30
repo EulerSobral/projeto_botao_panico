@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class SendMessageFacade {
-    private EmailService emailService;
+    private static EmailService emailService;
 
     public SendMessageFacade(EmailService emailService) {
         this.emailService = emailService;
