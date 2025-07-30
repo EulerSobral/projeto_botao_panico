@@ -63,7 +63,7 @@ function Buttons(){
                     <p className="text-btn-1">Policia</p> 
                     <p className="text-btn-2">Notique a polícia</p> 
                 </div> 
-                <div className="btn-3" onClick={() => handleClick('IFPB - CG', 'Polícia', date, userId)}> 
+                <div className="btn-3" onClick={() => handleClick('IFPB - CG', 'Bombeiros', date, userId)}> 
                     <p className="text-btn-1">Bombeiros</p> 
                     <p className="text-btn-2">Notique os bombeiros</p> 
                 </div>
