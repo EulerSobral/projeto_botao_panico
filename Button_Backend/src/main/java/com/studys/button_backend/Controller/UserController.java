@@ -46,6 +46,6 @@ public class UserController {
             if(result) return ResponseEntity.status(200).body("User deleted successfully");
             else return ResponseEntity.status(400).body("User deletion failed");
         }
-        catch(Exception e){return ResponseEntity.status(400).body("User deletion failed");}
+        catch(Exception e){return ResponseEntity.status(400).body("User dont search");}
     }
 }
