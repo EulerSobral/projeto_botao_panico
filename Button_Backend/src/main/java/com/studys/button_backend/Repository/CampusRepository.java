@@ -14,7 +14,7 @@ public class CampusRepository {
 
 
     public Boolean register(String className){
-        String sql = "insert into campus(class) values(?)";
+        String sql = "insert into campus(name) values(?)";
 
         try{
             jdbcTemplate.update(sql, className);

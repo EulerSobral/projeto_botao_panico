@@ -19,7 +19,7 @@ public class CampusController {
     @PostMapping
     public ResponseEntity<?> register(@RequestBody Map<String,String> campus){
         try{
-            String className = campus.get("class");
+            String className = campus.get("className");
 
             Boolean result = campusService.registerCampus(className);
 
