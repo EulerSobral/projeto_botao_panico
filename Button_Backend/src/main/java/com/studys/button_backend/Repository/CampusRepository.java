@@ -26,10 +26,8 @@ public class CampusRepository {
     public Boolean deleteCampus(int id){
         String sql = "delete from campus where id = ?";
 
-        try{
-            jdbcTemplate.update(sql, id);
-            return true;
-        }
-        catch(Exception e){return false;}
+        return jdbcTemplate.update(sql, id) != 0;
+
+
     }
 }
