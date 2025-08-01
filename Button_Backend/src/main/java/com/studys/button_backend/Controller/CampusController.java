@@ -17,24 +17,25 @@ public class CampusController {
     }
 
     @PostMapping
-    public ResponseEntity<?> register(@RequestBody Map<String,String> campus){
+    public ResponseEntity<?> register(@RequestBody String campus,  @RequestHeader("Authorization") String token){
         try{
-            String className = campus.get("className");
+            System.out.println("Chegou no campus");
+            String className = campus;
 
             Boolean result = campusService.registerCampus(className);
 
-            if(result) return ResponseEntity.status(200).body("Campus registered successfully");
+            if(result && token != null) return ResponseEntity.status(200).body("Campus registered successfully");
             else return ResponseEntity.status(400).body("Campus registration failed");
         }
         catch(Exception e){return ResponseEntity.status(400).body("Campus registration failed");}
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@RequestBody int id_campus){
+    public ResponseEntity<?> delete(@RequestBody int id_campus,  @RequestHeader("Authorization") String token){
         try{
             Boolean result = campusService.deleteCampus(id_campus);
 
-            if(result) return ResponseEntity.status(200).body("Campus deleted successfully");
+            if(result && token != null) return ResponseEntity.status(200).body("Campus deleted successfully");
             else return ResponseEntity.status(400).body("Campus deletion failed");
         }
         catch(Exception e){return ResponseEntity.status(400).body("Campus deletion failed");}

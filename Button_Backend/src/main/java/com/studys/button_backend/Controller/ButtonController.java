@@ -18,25 +18,25 @@ public class ButtonController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registerButton(@RequestBody Map<String,String> button){
+    public ResponseEntity<?> registerButton(@RequestBody Map<String,String> button, @RequestHeader("Authorization") String token){
         try{
             String className = button.get("class");
             int id_campus = Integer.parseInt(button.get("id_campus"));
 
-            Boolean result = buttonService.registerButton(className, id_campus);
 
-            if(result) return ResponseEntity.status(200).body("Button registered successfully");
+            Boolean result = buttonService.registerButton(className, id_campus);
+            if(result && token != null) return ResponseEntity.status(200).body("Button registered successfully");
             else return ResponseEntity.status(400).body("Button registration failed");
         }
         catch(Exception e){return ResponseEntity.status(400).body("Button registration failed");}
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteButton(@RequestBody int id_button){
+    public ResponseEntity<?> deleteButton(@RequestBody int id_button,  @RequestHeader("Authorization") String token){
         try{
             Boolean result = buttonService.deleteButton(id_button);
 
-            if(result) return ResponseEntity.status(200).body("Button deleted successfully");
+            if(result && token != null) return ResponseEntity.status(200).body("Button deleted successfully");
             else return ResponseEntity.status(400).body("Button not found");
         }
         catch(Exception e){return ResponseEntity.status(404).body("error to access to data");}

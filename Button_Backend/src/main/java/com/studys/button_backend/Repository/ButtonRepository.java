@@ -1,7 +1,9 @@
 package com.studys.button_backend.Repository;
 
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class ButtonRepository {
@@ -26,4 +28,6 @@ public class ButtonRepository {
 
         return jdbcTemplate.update(sql, id) != 0;
     }
+
+
 }
