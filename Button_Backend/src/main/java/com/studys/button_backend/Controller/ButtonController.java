@@ -37,8 +37,8 @@ public class ButtonController {
             Boolean result = buttonService.deleteButton(id_button);
 
             if(result) return ResponseEntity.status(200).body("Button deleted successfully");
-            else return ResponseEntity.status(400).body("Button deletion failed");
+            else return ResponseEntity.status(400).body("Button not found");
         }
-        catch(Exception e){return ResponseEntity.status(400).body("Button deletion failed");}
+        catch(Exception e){return ResponseEntity.status(404).body("error to access to data");}
     }
 }
