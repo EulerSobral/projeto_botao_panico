@@ -8,17 +8,17 @@ import com.studys.button_backend.Service.UserService;
 
 
 public class SendMessageFacade {
-    private EmailService emailService;
-    private MessageService messageService;
 
-    public SendMessageFacade(EmailService emailService) {
-        this.emailService = emailService;
-    }
+    private static EmailService emailService;
+    private static MessageService messageService;
 
-    public void sendMessages(RegisterBody user){
+
+
+    public static void sendMessages(String email) {
         String subject = "E-mail enviado com sucesso";
         String message = "Hello World";
-        emailService.sendEmailText(user.getEmail(), subject, message );
-        messageService.sendText(user.getEmail(), subject, message );
+        messageService.sendText(email, subject, message );
+        emailService.sendEmailText(email, subject, message );
+
     }
 }

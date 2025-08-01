@@ -42,7 +42,7 @@ public class UserRepository {
         catch(Exception e){return false;}
     }
 
-    public Boolean delete(int registration){
+    public Boolean delete(String registration){
         String sql = "delete from users where registration = ?";
 
         try{

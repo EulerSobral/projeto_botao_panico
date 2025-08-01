@@ -1,5 +1,6 @@
 package com.studys.button_backend.Controller;
 
+import com.studys.button_backend.Interface.UserInterface;
 import com.studys.button_backend.Service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,7 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
+    private final UserInterface userService;
 
     public UserController(UserService userService){
         this.userService = userService;
@@ -45,6 +46,6 @@ public class UserController {
             if(result) return ResponseEntity.status(200).body("User deleted successfully");
             else return ResponseEntity.status(400).body("User deletion failed");
         }
-        catch(Exception e){return ResponseEntity.status(400).body("User deletion failed");}
+        catch(Exception e){return ResponseEntity.status(400).body("User dont search");}
     }
 }

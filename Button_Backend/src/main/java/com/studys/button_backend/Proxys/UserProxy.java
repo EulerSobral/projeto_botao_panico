@@ -19,18 +19,23 @@ public class UserProxy implements UserInterface {
         this.userService = userService;
     }
 
+    @Override
     public Map<String, String> loginUser(int registration) throws Exception {
 
             return userService.loginUser(registration);
     }
 
+    @Override
     public Boolean registerUser(String email, String registration, String phone, String password){
         return userService.registerUser(registration, password, email, phone);
     }
 
-    public Boolean deleteUser(String token){
+    @Override
+    public Boolean deleteUser(String token) {
         checkToken(token);
-        return userService.deleteUser(token);
+        String registration = JwtUtil.decodeToken(token).getSubject();
+
+        return userService.deleteUser(registration);
     }
 
     private void checkToken(String token) {

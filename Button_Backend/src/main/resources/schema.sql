@@ -17,11 +17,11 @@ create table buttons (
 
 create table alerts (
                         id INTEGER auto_increment primary key,
-                        id_button INTEGER,
+                        id_button INTEGER null,
                         local varchar(250),
                         type varchar(25),
-                        date datetime,
-                        id_user INTEGER
+                        date date,
+                        id_user INTEGER null
 );
 
 create table campus (
@@ -38,7 +38,7 @@ create table campus (
 
 -- Constraints (corretas agora com nomes em minúsculo e nomes válidos de tabela)
 alter table alerts add constraint fk_button foreign key (id_button) references buttons(id);
-alter table alerts add constraint fk_user foreign key (id_user) references users(id);
+alter table alerts add constraint fk_user foreign key (id_user) references users(registration);
 alter table users add constraint fk_user_campus foreign key (id_campus) references campus(id);
 -- alter table adm_campus add constraint fk_adm_user foreign key (id_user) references users(id);
 -- alter table adm_campus add constraint fk_adm_campus foreign key (id_campus) references campus(id);
