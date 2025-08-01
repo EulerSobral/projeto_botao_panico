@@ -42,14 +42,11 @@ public class UserRepository {
         catch(Exception e){return false;}
     }
 
-    public Boolean delete(int registration){
+    public Boolean delete(String registration){
         String sql = "delete from users where registration = ?";
 
-        try{
-            jdbcTemplate.update(sql, new Object[]{registration});
-            return true;
-        }
-        catch(Exception e){return false;}
+        return jdbcTemplate.update(sql, registration) != 0;
+
     }
 }
 

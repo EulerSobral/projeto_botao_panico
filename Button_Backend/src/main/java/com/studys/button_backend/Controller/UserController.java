@@ -13,7 +13,7 @@ public class UserController {
 
     private final UserInterface userService;
 
-    public UserController(UserService userService){
+    public UserController(UserInterface userService){
         this.userService = userService;
     }
 
@@ -40,8 +40,10 @@ public class UserController {
 
             String tokenAdjusted;
             tokenAdjusted = token.substring(7);
+            System.out.println(tokenAdjusted);
 
-            Boolean result = userService.deleteUser(tokenAdjusted);
+            Boolean result = false;
+            result = userService.deleteUser(tokenAdjusted);
 
             if(result) return ResponseEntity.status(200).body("User deleted successfully");
             else return ResponseEntity.status(400).body("User deletion failed");

@@ -27,13 +27,15 @@ public class UserProxy implements UserInterface {
 
     @Override
     public Boolean registerUser(String email, String registration, String phone, String password){
-        return userService.registerUser(registration, password, email, phone);
+        return userService.registerUser(email, registration, phone, password);
     }
 
     @Override
     public Boolean deleteUser(String token) {
+        System.out.println("chegou no user proxy");
         checkToken(token);
         String registration = JwtUtil.decodeToken(token).getSubject();
+        System.out.println(registration);
         return userService.deleteUser(registration);
     }
 
