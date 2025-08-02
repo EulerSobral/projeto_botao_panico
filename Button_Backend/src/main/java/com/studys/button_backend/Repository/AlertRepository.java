@@ -1,5 +1,6 @@
 package com.studys.button_backend.Repository;
 
+import com.studys.button_backend.Util.SendMessageFacade;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,7 @@ public class AlertRepository {
     public Boolean createAlert(int id_button, String type, LocalDate data){
 
         String sql = "insert into alerts(id_button, type, date) values(?,?,?)";
+
 
         try{
             jdbcTemplate.update(sql, id_button, type, data);

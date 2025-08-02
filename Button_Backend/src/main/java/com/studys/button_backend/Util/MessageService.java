@@ -1,18 +1,21 @@
-package com.studys.button_backend.Service;
+package com.studys.button_backend.Util;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-//import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-//@Service
+@Component
 public class MessageService {
 
-    private String sender;
-    private String subject;
-    private String  message;
 
-    public MessageService(String sender,  String subject, String message) {
+    private String sender;
+    private  String subject;
+    private  String  message;
+
+    public MessageService(){
+
+    }
+
+    public MessageService( String sender, String subject, String message) {
          this.sender = sender;
          this.subject = subject;
          this.message = message;
@@ -26,13 +29,14 @@ public class MessageService {
     public String getSubject() {return subject;}
     public String getMessage() {return message;}
 
-    public String sendText(String recipient, String subject, String message){
+
+    public String sendText(String subject, String message){
         try{
             System.out.println(message);
-            return "mensagem enviada com sucesso!";
+            return message;
         }catch (Exception e){
             System.out.println("erro no envio da mensagem");
-            return "Erro ao enviar email!" + e.getLocalizedMessage();
+            return "Erro ao enviar mesage!" + e;
         }
     }
 }

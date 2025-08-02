@@ -4,10 +4,12 @@ import java.time.LocalDate;
 
 public interface AlertInterface {
 
-    public Boolean sendAlert(int id_button, String type);
+    public Boolean sendAlert(int id_button);
 
 
-    public Boolean sendAlert(String local, String type,  String token);
+   public Boolean sendAlert(String local, String type,  String token);
+
+;
 
 
 }

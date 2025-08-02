@@ -20,9 +20,9 @@ public class AlertProxy implements AlertInterface {
     }
 
     @Override
-    public Boolean sendAlert(int id_button, String type){
+    public Boolean sendAlert(int id_button){
         System.out.println("chegou no proxy");
-        return alertService.sendAlert(id_button, type);
+        return alertService.sendAlert(id_button);
     }
 
     @Override

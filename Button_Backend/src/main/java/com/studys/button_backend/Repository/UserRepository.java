@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -47,6 +48,12 @@ public class UserRepository {
 
         return jdbcTemplate.update(sql, registration) != 0;
 
+    }
+
+    public List<String> findAllEmails() {
+        String sql = "SELECT email FROM users";
+
+        return jdbcTemplate.query(sql, (rs, rowNum) -> rs.getString("email"));
     }
 }
 

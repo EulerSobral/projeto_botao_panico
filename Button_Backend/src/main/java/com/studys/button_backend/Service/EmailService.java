@@ -1,4 +1,4 @@
-package com.studys.button_backend.Service;
+/*package com.studys.button_backend.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,3 +33,4 @@ public class EmailService {
         }
     }
 }
+*/

@@ -2,6 +2,7 @@ package com.studys.button_backend.Controller;
 
 import com.studys.button_backend.Interface.AlertInterface;
 import com.studys.button_backend.Service.AlertService;
+import com.studys.button_backend.Util.SendMessageFacade;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,22 +27,23 @@ public class AlertController {
             String local = alert.get("local");
             String id_button = alert.get("id_button");
             String type = alert.get("type");
-
+            SendMessageFacade sendMessageFacade;
 
             Boolean result = false;
 
 
-            if(local != null && token != null){
+            if(local != null){
                 String tokenAdjusted;
                 tokenAdjusted = token.substring(7);
-                result = alertService.sendAlert(local, type, tokenAdjusted);
+               result = alertService.sendAlert(local, type, tokenAdjusted);
+
             }
             else if(id_button != null){
                 int idButton = Integer.parseInt(id_button);
-                result = alertService.sendAlert(idButton, type);
+                result = alertService.sendAlert(idButton);
             }
 
-            if(result) return ResponseEntity.status(200).body("sent alert");
+            if(result) return ResponseEntity.status(200).body("sent alert ");
             else return ResponseEntity.status(400).body("failed to send alert");
         }
         catch(Exception e){System.out.println("erro em alertcontroller");return ResponseEntity.status(400).body("Error");
