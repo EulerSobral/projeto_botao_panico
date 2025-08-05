@@ -19,7 +19,6 @@ public class CampusController {
     @PostMapping
     public ResponseEntity<?> register(@RequestBody String campus,  @RequestHeader("Authorization") String token){
         try{
-            System.out.println("Chegou no campus");
             String className = campus;
 
             Boolean result = campusService.registerCampus(className);

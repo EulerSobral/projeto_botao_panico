@@ -14,14 +14,13 @@ import java.util.Map;
 public class AlertController {
 
     private final AlertInterface alertService;
-
-    public AlertController(AlertInterface alertService){
+    public AlertController(AlertInterface alertService) {
         this.alertService = alertService;
     }
 
     @PostMapping("buttonPhysics")
     public ResponseEntity<?> sendPhysicsButtonAlert(@RequestBody Map<String, String> alert, @RequestHeader("Authorization") String token) {
-        System.out.println("Chegou no botão físico (rota buttonPhysics)");
+
         try {
             String id_button = alert.get("id_button");
             if (id_button == null) return ResponseEntity.badRequest().body("id_button ausente");
@@ -29,22 +28,21 @@ public class AlertController {
             int idButton = Integer.parseInt(id_button);
             Boolean result = alertService.sendAlert(idButton);
 
-            if (result) return ResponseEntity.ok("Alerta por botão físico enviado com sucesso");
-            else return ResponseEntity.status(400).body("Falha ao enviar alerta por botão físico");
+            if (result) return ResponseEntity.ok("physical button alert sent successfully");
+            else return ResponseEntity.status(400).body("failed to send alert via physical button");
         } catch (Exception e) {
-            System.out.println("Erro na rota /Alert/buttonPhysics");
             return ResponseEntity.status(400).body("Erro ao processar alerta físico");
         }
     }
 
     @PostMapping
     public ResponseEntity<?> sendAlert(@RequestBody Map<String, String> alert, @RequestHeader("Authorization") String token){
-        System.out.println("Chegou no send");
+
         try{
             String local = alert.get("local");
             String id_button = alert.get("id_button");
             String type = alert.get("type");
-            SendMessageFacade sendMessageFacade;
+
 
             Boolean result = false;
 
@@ -53,7 +51,6 @@ public class AlertController {
                 String tokenAdjusted;
                 tokenAdjusted = token.substring(7);
                result = alertService.sendAlert(local, type, tokenAdjusted);
-
             }
             else if(id_button != null){
                 String tokenAdjusted;

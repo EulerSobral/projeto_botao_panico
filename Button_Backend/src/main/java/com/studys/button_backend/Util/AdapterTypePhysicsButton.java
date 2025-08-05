@@ -28,7 +28,6 @@ public class AdapterTypePhysicsButton implements AdapterInterface, HandlerInterc
 
             if (lastRequestTime == null || lastRequestTime.plusDays(1).isBefore(now)) {
                 postTestRequestCounter.set(0);
-                System.out.println("Mais de 1 dia desde a última requisição. Contador resetado.");
             }
             lastRequestTime = now;
 
@@ -36,9 +35,7 @@ public class AdapterTypePhysicsButton implements AdapterInterface, HandlerInterc
 
             if (count > 3) {
                 postTestRequestCounter.set(1);
-                System.out.println("Contador passou de 3. Resetado para 1.");
             }
-            System.out.println("Interceptado POST para /Alert. Contador = " + count);
 
         }
 

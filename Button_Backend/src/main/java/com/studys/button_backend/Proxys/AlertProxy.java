@@ -21,15 +21,12 @@ public class AlertProxy implements AlertInterface {
 
     @Override
     public Boolean sendAlert(int id_button) {
-        System.out.println("chegou no proxy");
         return alertService.sendAlert(id_button);
     }
 
     @Override
     public Boolean sendAlert(String local, String type,  String token){
-        System.out.println("Chegou no proxy");
         checkToken(token);
-        System.out.println(token);
         return alertService.sendAlert(local, type,  token);
     }
 
@@ -37,7 +34,6 @@ public class AlertProxy implements AlertInterface {
         try {
             JwtUtil.decodeToken(token);
         } catch (Exception e) {
-            System.out.println("Token invalido");
             throw new RuntimeException("Token inválido ou expirado");
         }
     }

@@ -13,7 +13,7 @@ public class SendMessageFacade {
 
    // private static EmailService emailService;
     private static MessageService messageService;
-    private static  UserRepository userRepository;
+    private static UserRepository userRepository;
 
     @Autowired
     public SendMessageFacade(MessageService messageService, UserRepository userRepository) {
@@ -21,7 +21,7 @@ public class SendMessageFacade {
         this.userRepository = userRepository;
     }
 
-    public static void sendMessages(String type) {
+    public void sendMessages(String type) {
         List<String> subject = userRepository.findAllEmails();
 
         for(String user: subject){

@@ -34,7 +34,6 @@ public class AlertService implements AlertInterface {
 
         LocalDate data = dataHoraAtualNoBrasil.toLocalDate();
 
-        System.out.println("Chegou no service");
 
         String type = typePhysicsButton.getType();
 
@@ -46,7 +45,6 @@ public class AlertService implements AlertInterface {
 
 
     public Boolean sendAlert(String local, String type, String token){
-        System.out.println("Chegou no service");
 
         int id_user = Integer.parseInt(JwtUtil.decodeToken(token).getSubject());
 

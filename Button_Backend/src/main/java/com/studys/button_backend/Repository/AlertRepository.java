@@ -31,7 +31,6 @@ public class AlertRepository {
     public Boolean createAlert(int id_user, String local, String type, LocalDate data){
         String sql = "insert into alerts(id_user, local, type, date) values(?,?,?,?)";
 
-        System.out.println("chegou no repository");
         try{
             jdbcTemplate.update(sql, id_user, local, type, data);
             return true;
