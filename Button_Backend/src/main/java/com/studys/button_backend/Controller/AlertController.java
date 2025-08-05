@@ -19,6 +19,23 @@ public class AlertController {
         this.alertService = alertService;
     }
 
+    @PostMapping("buttonPhysics")
+    public ResponseEntity<?> sendPhysicsButtonAlert(@RequestBody Map<String, String> alert, @RequestHeader("Authorization") String token) {
+        System.out.println("Chegou no botão físico (rota buttonPhysics)");
+        try {
+            String id_button = alert.get("id_button");
+            if (id_button == null) return ResponseEntity.badRequest().body("id_button ausente");
+
+            int idButton = Integer.parseInt(id_button);
+            Boolean result = alertService.sendAlert(idButton);
+
+            if (result) return ResponseEntity.ok("Alerta por botão físico enviado com sucesso");
+            else return ResponseEntity.status(400).body("Falha ao enviar alerta por botão físico");
+        } catch (Exception e) {
+            System.out.println("Erro na rota /Alert/buttonPhysics");
+            return ResponseEntity.status(400).body("Erro ao processar alerta físico");
+        }
+    }
 
     @PostMapping
     public ResponseEntity<?> sendAlert(@RequestBody Map<String, String> alert, @RequestHeader("Authorization") String token){
@@ -39,6 +56,8 @@ public class AlertController {
 
             }
             else if(id_button != null){
+                String tokenAdjusted;
+                tokenAdjusted = token.substring(7);
                 int idButton = Integer.parseInt(id_button);
                 result = alertService.sendAlert(idButton);
             }
@@ -48,4 +67,5 @@ public class AlertController {
         }
         catch(Exception e){System.out.println("erro em alertcontroller");return ResponseEntity.status(400).body("Error");
     }
+
 }}

@@ -19,6 +19,7 @@ public class ButtonProxy implements ButtonInterface {
         return buttonService.registerButton(classButton, id_campus);
     }
 
+
     @Override
     public Boolean deleteButton(int id_campus, String token){
         System.out.println("chegou no proxy do botão");

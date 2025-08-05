@@ -13,7 +13,15 @@ public class ButtonRepository {
     public ButtonRepository(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
+
     public Boolean register(String className, int id_campus){
+        String checkExistsCampusSQL = "SELECT COUNT(*) FROM campus WHERE id = ?";
+        Integer countCampus = jdbcTemplate.queryForObject(checkExistsCampusSQL, Integer.class, id_campus);
+
+        if (countCampus == 0 || countCampus == null) {
+            return false;
+        }
+
         String sql = "insert into buttons(class, id_campus) values(?, ?)";
 
         try{

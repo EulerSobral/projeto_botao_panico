@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import java.time.LocalDateTime;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,14 +15,33 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class AdapterTypePhysicsButton implements AdapterInterface, HandlerInterceptor {
     private final AtomicInteger postTestRequestCounter = new AtomicInteger(0);
-    private static final String TARGET_URI = "/Alert";
+    private static final String TARGET_URI = "/Alert/buttonPhysics";
+    private LocalDateTime lastRequestTime = null;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
         if ("POST".equalsIgnoreCase(request.getMethod()) && TARGET_URI.equals(request.getRequestURI())) {
+
+            LocalDateTime now = LocalDateTime.now();
+
+
+            if (lastRequestTime == null || lastRequestTime.plusDays(1).isBefore(now)) {
+                postTestRequestCounter.set(0);
+                System.out.println("Mais de 1 dia desde a última requisição. Contador resetado.");
+            }
+            lastRequestTime = now;
+
             int count = postTestRequestCounter.incrementAndGet();
+
+            if (count > 3) {
+                postTestRequestCounter.set(1);
+                System.out.println("Contador passou de 3. Resetado para 1.");
+            }
             System.out.println("Interceptado POST para /Alert. Contador = " + count);
+
         }
+
         return true;
     }
 
