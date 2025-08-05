@@ -1,7 +1,9 @@
 package com.studys.button_backend.Repository;
 
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class ButtonRepository {
@@ -24,10 +26,8 @@ public class ButtonRepository {
     public Boolean delete(int id){
         String sql = "delete from buttons where id = ?";
 
-        try{
-            jdbcTemplate.update(sql, id);
-            return true;
-        }
-        catch(Exception e){return false;}
+        return jdbcTemplate.update(sql, id) != 0;
     }
+
+
 }

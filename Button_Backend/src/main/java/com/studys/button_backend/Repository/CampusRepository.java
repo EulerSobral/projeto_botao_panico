@@ -14,7 +14,7 @@ public class CampusRepository {
 
 
     public Boolean register(String className){
-        String sql = "insert into campus(class) values(?)";
+        String sql = "insert into campus(name) values(?)";
 
         try{
             jdbcTemplate.update(sql, className);
@@ -26,10 +26,8 @@ public class CampusRepository {
     public Boolean deleteCampus(int id){
         String sql = "delete from campus where id = ?";
 
-        try{
-            jdbcTemplate.update(sql, id);
-            return true;
-        }
-        catch(Exception e){return false;}
+        return jdbcTemplate.update(sql, id) != 0;
+
+
     }
 }

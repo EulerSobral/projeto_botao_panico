@@ -30,9 +30,8 @@ public class UserService implements UserInterface {
     }
 
     public Boolean deleteUser(String registration){
-        int id = Integer.parseInt(registration);
 
-        return userRepository.delete(id);
+        return userRepository.delete(registration);
     }
 
 
