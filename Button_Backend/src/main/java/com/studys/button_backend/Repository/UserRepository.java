@@ -17,7 +17,7 @@ public class UserRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Map<String, String> login(int registration) throws Exception {
+    public Map<String, String> login(int registration)  {
         String sql = "select password, type from users where registration = ?";
 
         try{
@@ -30,7 +30,7 @@ public class UserRepository {
 
             return result;
         }
-        catch(Exception e){throw new Exception("Login Error");}
+        catch(Exception e){return null;}
     }
 
     public Boolean Register(String registration, String password, String email, String phone){
