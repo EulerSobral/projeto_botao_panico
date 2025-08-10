@@ -8,7 +8,7 @@ Disciplina: Padrões e Projetos
 Professor: Dr. Katyusco Farias Santos  
 
 Autores:  
-- Euler Pereira Sobral ([euler.pereira@academico.ifpb.edu.br](mailto:eulersobral80@gmail.com))  
+- Euler Pereira Sobral ([eulersobral80@gmail.com](mailto:eulersobral80@gmail.com))  
 - Edriel José Pacífico Gama ([edriel.jose@academico.ifpb.edu.br](mailto:edriel.jose@academico.ifpb.edu.br))  
 
 **Local:** Campina Grande, PB  
