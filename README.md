@@ -5,7 +5,7 @@
 # Documento de Especificação de Requisitos  
 **Sistema de Botão de Pânico**  
 Disciplina: Padrões e Projetos  
-Professor: Dr. Katyusco de Farias Santos  
+Professor: Dr. Katyusco Farias Santos  
 
 Autores:  
 - Euler Pereira Sobral ([euler.pereira@academico.ifpb.edu.br](mailto:euler.pereira@academico.ifpb.edu.br))  
